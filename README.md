@@ -9,6 +9,23 @@ Factor investing has become increasingly popular among both passive and active i
 - **Performance Metrics Assessment**: Providing a detailed review of key performance indicators such as the Sharpe Ratio, Maximum Drawdown, Value at Risk (VaR), and Conditional Value at Risk (CVaR).
 - **Factor Sector Concentration Analysis**: Offering an overview of the sector distribution within the portfolios, highlighting predominant sectors in each strategy.  
 
+
+**Techniques used in these projects:**
+
+Data Collection Techniques:
+- Employed web scraping and API requests to acquire company tickers and financial information from resources such as the SEC database, Wikipedia, and YahooFinance. 
+- Leveraged SQL for interactions with several databases like Compustat, CRSP, and I/B/E/S.
+- Utilized the requests library for API interactions and processed data from JSON files.
+
+Data Manipulation and Processing:
+- Time Series Data Handling: Utilized pandas for resampling and aligning time series data to consistent intervals, employing various timeseries functions such as pd.tseries.offsets.MonthEnd().rollforward(), resample(), and dt.days
+- Data Cleaning and Transformation: Cleaned and restructured data using groupby(), and merge(). Addressed data anomalies and missing data effectively through functions like fillna(), describe(), qcut(), sort_values(), value_counts(), and unique().
+- Data Analysis and visualization: Implemented complex Python operations including rolling window calculations, lambda functions, apply(), map(), and np.where(). Enhanced data structure management by leveraging list comprehensions, set operations, and dictionary manipulations. Handled sophisticated data frameworks like dictionaries of lists/dictionaries, DataFrames, and multi-indexed DataFrames with operations like pivot() and stack() to structure and analyze data efficiently.
+
+Financial Metrics Calculation:
+- Computed several financial metrics such as annualized returns/volatility, price-to-book value per share, earnings surprise, Sharpe Ratio, Max Drawdown, Value at Risk (VaR), Conditional Value at Risk (CVaR), Skewness, and Kurtosis.
+
+
 ## Value-Based Factor Portfolio Strategy (P1 - P5)
 ### Overview
 The value-based strategy project aims to construct portfolios by ranking stocks based on their P/B ratios. Lower P/B ratios are assumed to indicate undervalued stocks, which are targeted for the "high value" portfolio. The project involves data acquisition, cleaning, analysis, and backtesting to assess the performance of the strategy over several years. Price/Book Value is calculated as Month-end price divided by latest reported book value per share. The analysis also includes all the removed tickers historically from the S&P 500 index components since 2013 to eliminate the survivorship bias. 
