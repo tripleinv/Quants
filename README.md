@@ -11,10 +11,10 @@ Factor investing has become increasingly popular among both passive and active i
 
 ## Value-Based Factor Portfolio Strategy (P1 - P5)
 ### Overview
-The value-based strategy project aims to construct portfolios by ranking stocks based on their P/B ratios. Lower P/B ratios are assumed to indicate undervalued stocks, which are targeted for the "high value" portfolio. The project involves data acquisition, cleaning, analysis, and backtesting to assess the performance of the strategy over several years. Price/Book Value is calculated as Month-end price divided by latest reported book value per share. The analysis also included all the removed tickers historically from the S&P 500 index components since 2013 to eliminate the survivorship bias. 
+The value-based strategy project aims to construct portfolios by ranking stocks based on their P/B ratios. Lower P/B ratios are assumed to indicate undervalued stocks, which are targeted for the "high value" portfolio. The project involves data acquisition, cleaning, analysis, and backtesting to assess the performance of the strategy over several years. Price/Book Value is calculated as Month-end price divided by latest reported book value per share. The analysis also includes all the removed tickers historically from the S&P 500 index components since 2013 to eliminate the survivorship bias. 
 
 ### Data Source & Structure:
-All financial metrics data, including Assets, Liabilities, Stockholders Equity, Diluted/Common Shares Oustanding, Current Liabilities, Non-Current Liabilities are obtained from the SEC database. For current S&P constituents, data are obtained from [here](https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip). For removed historical S&P constituents, data are obtained using the SEC companyfact API: https://data.sec.gov/api/xbrl/companyfacts/CIK##########.json. All files are in JSON format. All stock price data is downloaded using the yfinance package. 
+Financial metrics data, including assets, liabilities, equity, and shares outstanding, along with current and non-current liabilities, are sourced from the SEC database. Specifically, for current S&P 500 constituents, data are obtained from [here](https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip). For removed historical S&P constituents, data are obtained using the SEC companyfact API: https://data.sec.gov/api/xbrl/companyfacts/CIK##########.json. All data files are in JSON format. All stock price data is downloaded using the yfinance package. 
 
 ### Strategy Design Methodology:
 - Price/Book Value is calculated as Month-end price divided by latest reported book value per share
@@ -42,6 +42,10 @@ Risk and Return Characteristics:
 
 ![low pb value risk reward characteristics](https://github.com/user-attachments/assets/2789247b-b5fa-446c-8e11-4ee9862f50a0)
 
+Risk Performance Metrics:
+
+![risk matrics](https://github.com/user-attachments/assets/753bb904-19a8-4787-87d3-72a783bcfa12)
+
 Low Price/Book Value Sector Concentration:
 - Financials has counted as the major sector under the P/BVPS value factor over the last decade, with Utilities and Consumer Staples seeing an increasing factor exposure post the covid. 
 
@@ -55,7 +59,7 @@ Low Price/Book Value Sector Concentration:
 This project calculates earnings surprise based on the street's consensus to create a growth-based factor portfolio that aims to capitalize on the market's reaction to earnings reports. The strategy is inspired by the research conducted on PEAD (Post Earnings Announcement Drift), which stated the tendency for a stock’s cumulative abnormal returns to drift in the direction of an earnings surprise for several weeks (even several months) following an earnings announcement. The earnings surprise is calcualted as the difference between the actual reported earnings per share and the most recent I/B/E/S street's consensus divided by the most recent street's consensus. 
 
 ### Data Source & Structure:
-The stock financial data is obtained from Compustat, pricing data is downloaded from CRSP and earnings estimates data from I/B/E/S. All data are queried uisng SQL. gvkey, CIK, CUSIP, permno and permco are the primary identifiers used to link the dataset together. More detailed can be found in P6. 
+Financial data for stocks is sourced from Compustat, while pricing data is acquired from CRSP, and earnings estimates are retrieved from I/B/E/S. These datasets are accessed and integrated using SQL queries. Key identifiers such as gvkey, CIK, CUSIP, permno, and permco are utilized to consolidate the datasets. For further details, refer to notebook P6.
 
 ### Strategy Design Methodology:
 - Filter for the most recent quarterly earnings estimates and actuals before the announcement date.
@@ -86,18 +90,9 @@ Risk-Reward Characteristics Chart:
 - The Positive Surprise Strategy exhibits higher average returns with a risk profile only marginally higher than the S&P 500, denoting an attractive risk-reward balance. The Negative Surprise Strategy shows higher variability in returns, implying increased risk without commensurate reward.
 ![long positive and negative earnings surprise value risk reward](https://github.com/user-attachments/assets/47c4df31-141b-480e-b6b3-ced473d86ea1)
 
-Sharpe Ratio for long positive earnings surprise strategy:  56.00%
-Sharpe Ratio for long negative earnings surprise strategy:  48.10%
-Max Drawdown for long positive earnings surprise strategy: -28.36%
-Max Drawdown for long negative earnings surprise strategy: -30.42%
-skewness for long negative earnings surprise strategy: -0.37
-skewness for long positive earnings surprise strategy: -0.43
-kurtosis for long negative earnings surprise strategy:  4.9
-kurtosis for long positive earnings surprise strategy:  5.5
-historic var for long negative earnings surprise strategy:  6.40%
-historic var for long positive earnings surprise strategy:  6.29%
-CVaR for long negative earnings surprise strategy:  10.85%
-CVaR for long positive earnings surprise strategy:  10.30%
+Risk Performance Metrics:
+
+![risks matrcis](https://github.com/user-attachments/assets/97e8f8d5-46d1-4175-81e0-ae817328cfe7)
 
 Sector Concentration Chart:
 
