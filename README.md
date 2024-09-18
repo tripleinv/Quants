@@ -49,13 +49,13 @@ Cumulative Returns of Low and High P/BVPS Strategy:
 
 ![cumulative_returns_of_low_and_high_PBVPS_strategy](https://github.com/user-attachments/assets/8a2fe9b0-7fef-410a-b69c-de21c7dc9072)
 
-Relative Performance of Low P/B, High P/B to S&P 500 Inde: 
+Relative Performance of Low P/B, High P/B to S&P 500 Indexes: 
 - The long-short Price/BVPS spread indicates increasing profitability of betting on high P/B while shorting low P/B stocks, especially during the time of economic recession and increased market volatility, as shown noticeablely post-2020.
 
 ![relative_performance_of_low_pb_high_pb](https://github.com/user-attachments/assets/a4618e12-2ffc-4965-a8b6-c5ddbe12be83)
 
 Risk and Return Characteristics: 
-- The Long high P/B strategy showcases superior risk-adjusted returns, with lower volatility and higher average returns than the S&P 500 and Equal Weight S&P 500. This 
+- The Long high P/B strategy showcases superior risk-adjusted returns, with lower volatility and higher average returns than the S&P 500 and Equal Weight S&P 500. 
 
 ![low pb value risk reward characteristics](https://github.com/user-attachments/assets/2789247b-b5fa-446c-8e11-4ee9862f50a0)
 
