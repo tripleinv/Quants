@@ -1,70 +1,119 @@
-# Quantitative Strategies Projects Repository
-This repository contains two key projects focusing on factor-based investment strategies. The first project focuses on a value-based factor portfolio strategy using the Price-to-Book (P/B) ratio, while the second project targets a growth-based factor portfolio strategy concentrating on earnings surprises.
+# Factor-based Quantitative Strategies Projects
+## Background
+Factor investing has become increasingly popular among both passive and active investors due to its incorporation of various strategies such as value, growth, size, momentum, quality, and risk. This repository highlights two main projects focusing on factor-based investment strategies that leverage value and growth. The first project is centered on a value-based factor portfolio strategy utilizing the Price-to-Book (P/B) ratio. The second project emphasizes a growth-based factor portfolio strategy that capitalizes on earnings surprises.
 
-1. Value-Based Factor Portfolio Strategy (P/B Ratio)
-Overview
-The value-based strategy project aims to construct portfolios by ranking stocks based on their P/B ratios. Lower P/B ratios are assumed to indicate undervalued stocks, which are targeted for the "high value" portfolio. The project involves data acquisition, cleaning, analysis, and backtesting to assess the performance of the strategy over several years.
+**Insights and recommendations are provided on the following key areas:**
+- **Factor-based Portfolio Construction**: Constructing value factor (P/B ratio) and growth factor (earnings surprise) based portfolios among the S&P 500 indexes from 2013 to current, focusing on selecting relevant stocks by calculating and ranking these factors and assinging correponding weightings.
+- **Backtesting Returns Analysis**: Evaluating the historical performance of these portfolios against both equally-weighted and market-cap-weighted S&P 500 indices.
+- **Risk and Return Characteristic**s: Analyzing the rolling 12-month annual return and rolling 12-month standard deviation among the portfolios compared to benchmarks.
+- **Performance Metrics Assessment**: Providing a detailed review of key performance indicators such as the Sharpe Ratio, Maximum Drawdown, Value at Risk (VaR), and Conditional Value at Risk (CVaR).
+- **Factor Sector Concentration Analysis**: Offering an overview of the sector distribution within the portfolios, highlighting predominant sectors in each strategy.  
 
-**Steps:** (all detailed code/steps/outputs can be found in notebook P1-P5)
-Data Preparation and Manipulation: 
-- Work with the SEC database through SEC API.
-- Added historically removed tickers to eliminiate survivorship bias. 
-Analysis:
-- Calculate and analyze monthly return data.
-- Rank stocks based on P/B values and assign to top and bottom portfolios.
-- Calculate cumulative returns and compare against the S&P 500 benchmark.
-Performance Evaluation:
-- Assess performance using metrics such as Sharpe Ratio, Drawdown, and others.
-- Conduct sector concentration analysis to understand risk exposure.
+## Value-Based Factor Portfolio Strategy (P1 - P5)
+### Overview
+The value-based strategy project aims to construct portfolios by ranking stocks based on their P/B ratios. Lower P/B ratios are assumed to indicate undervalued stocks, which are targeted for the "high value" portfolio. The project involves data acquisition, cleaning, analysis, and backtesting to assess the performance of the strategy over several years. Price/Book Value is calculated as Month-end price divided by latest reported book value per share. The analysis also included all the removed tickers historically from the S&P 500 index components since 2013 to eliminate the survivorship bias. 
 
-**Results & Insights**
-The insights from this project indicate that value-based factors, specifically low P/B strategy, have underperformed the high P/B strategy over the past few years. In particular, during the 2020 pandemic lockdown, low P/B strategy has significantly underperformned. In other words, during the economic downturn, investors would prefer high quality stocks, which would normally trade at a slight premium to low quality in terms of price/book value. Nevertheless, over the past decade, both high and low P/B factor investment strategy have outrun the S&P500 index benchmark. When looking at risk to reward profile, long high P/B represented the highest returns with a modest risks compared to long low P/B factor. Sector-wise, historically, financial represented the largest group among the low P/B factor, followed by energy.
+### Data Source & Structure:
+All financial metrics data, including Assets, Liabilities, Stockholders Equity, Diluted/Common Shares Oustanding, Current Liabilities, Non-Current Liabilities are obtained from the SEC database. For current S&P constituents, data are obtained from [here](https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip). For removed historical S&P constituents, data are obtained using the SEC companyfact API: https://data.sec.gov/api/xbrl/companyfacts/CIK##########.json. All files are in JSON format. All stock price data is downloaded using the yfinance package. 
 
-Insights and recommendations are provided on the following key areas:
+### Strategy Design Methodology:
+- Price/Book Value is calculated as Month-end price divided by latest reported book value per share
+- Rank stocks on a monthly basis based on Price/Book Value while excluding the stocks with negative P/B value.
+- Construct portfolios from the top 20% and bottom 20% of stocks with equal weightings based on P/B ratio.
 
+### Executive Summary
+This project's findings reveal that value-driven investment strategies, especially those employing low P/B ratios, have lagged behind their high P/B counterparts in recent years. This performance gap was particularly pronounced during the 2020 pandemic lockdown, where the low P/B strategy faltered significantly. Generally, in times of economic recession, investors tend to favor higher-quality stocks that often command a premium in terms of their price-to-book values. Despite these recent trends, both high and low P/B strategies have consistently outperformed the S&P 500 benchmark over the last ten years. In terms of risk versus reward, the high P/B strategy yielded the highest returns with relatively moderate risks compared to the low P/B strategy. From a sectoral perspective, the financial sector has predominantly characterized the low P/B strategy, with energy also playing a significant role.
+
+### Results & Insights
+
+Cumulative Returns of Low and High P/BVPS Strategy:
+
+- The High Price/BVPS Strategy exhibits consistent long-term growth over the past decade, outperforming the Low Price/BVPS strategy and the S&P Equal Weight and Market-Cap Weighted 500 Index. This outperformance becomes prominent from 2018 onwards. 
 
 ![cumulative_returns_of_low_and_high_PBVPS_strategy](https://github.com/user-attachments/assets/8a2fe9b0-7fef-410a-b69c-de21c7dc9072)
-**--------------------------------------------------------------------------------------------------------------------------------------------------**
+
+Relative Performance of Low P/B, High P/B to S&P 500 Inde: 
+- The long-short Price/BVPS spread indicates increasing profitability of betting on high P/B while shorting low P/B stocks, especially during the time of economic recession and increased market volatility, as shown noticeablely post-2020.
+
 ![relative_performance_of_low_pb_high_pb](https://github.com/user-attachments/assets/a4618e12-2ffc-4965-a8b6-c5ddbe12be83)
-**--------------------------------------------------------------------------------------------------------------------------------------------------**
+
+Risk and Return Characteristics: 
+- The Long high P/B strategy showcases superior risk-adjusted returns, with lower volatility and higher average returns than the S&P 500 and Equal Weight S&P 500. This 
+
 ![low pb value risk reward characteristics](https://github.com/user-attachments/assets/2789247b-b5fa-446c-8e11-4ee9862f50a0)
-**--------------------------------------------------------------------------------------------------------------------------------------------------**
+
+Low Price/Book Value Sector Concentration:
+- Financials has counted as the major sector under the P/BVPS value factor over the last decade, with Utilities and Consumer Staples seeing an increasing factor exposure post the covid. 
+
 ![low_pb_value_sector_concentration](https://github.com/user-attachments/assets/57ab82fd-6599-42f8-8288-8a335e19ad6e)
 
 
-2. Growth-Based Factor Portfolio Strategy (Earnings Surprise)
-Overview
-This project leverages earnings surprise data to create a dynamic portfolio that aims to capitalize on the market's reaction to earnings reports. The strategy is based on the research conducted on PEAD (Post Earnings Announcement Drift), which stated the tendency for a stock’s cumulative abnormal returns to drift in the direction of an earnings surprise for several weeks (even several months) following an earnings announcement. 
+--------------------------------------------------------------------------------------------------------------------------------------------
 
-**Steps:**(all detailed code/steps/outputs can be found in notebook P6)
-Data Sourcing: Download and merge datasets from Compustat, CRSP, and I/B/E/S.
-Strategy Design:
+## Growth-Based Factor Portfolio Strategy (Earnings Surprise, P6)
+### Overview
+This project calculates earnings surprise based on the street's consensus to create a growth-based factor portfolio that aims to capitalize on the market's reaction to earnings reports. The strategy is inspired by the research conducted on PEAD (Post Earnings Announcement Drift), which stated the tendency for a stock’s cumulative abnormal returns to drift in the direction of an earnings surprise for several weeks (even several months) following an earnings announcement. The earnings surprise is calcualted as the difference between the actual reported earnings per share and the most recent I/B/E/S street's consensus divided by the most recent street's consensus. 
+
+### Data Source & Structure:
+The stock financial data is obtained from Compustat, pricing data is downloaded from CRSP and earnings estimates data from I/B/E/S. All data are queried uisng SQL. gvkey, CIK, CUSIP, permno and permco are the primary identifiers used to link the dataset together. More detailed can be found in P6. 
+
+### Strategy Design Methodology:
 - Filter for the most recent quarterly earnings estimates and actuals before the announcement date.
-- Calculate the decay factor of earnings surprises to weight the influence of older surprises less.
+- Calculate the decay factor of earnings surprises to lessen the weights of older surprises.
 - Construct monthly earnings surprise factors and rebalance portfolios accordingly on a monthly basis.
-Backtesting:
-- Analyze the cumulative returns for portfolios constructed from the top 20% and bottom 20% of stocks based on earnings surprises.
-- Draw comparisons with the S&P 500 to gauge relative performance.
-- Assess performance using metrics such as Sharpe Ratio, Drawdown, and others.
-- Conduct sector concentration analysis to understand risk exposure.
-**Results & Insights**
-The growth-based strategy, focused on earnings surprises, shows significant potential in capturing excess returns post-earnings announcements with positive earnings surprise. Over the past decade, long positive earnings surprise has outperformed the negative earnings surprise and the S&P500 indexes. While it comes with higher volatility, the returns is also correspondingly higher. When looking at the Sharpe Ratio, long positive earnings surprise factor has delivered a rate of 56%, compared to the 48% by negative earnings surprise. However, it also underscores the importance of timing and fast execution due to the quickly diminishing effects of surprises.
+- Construct portfolios from the top 20% and bottom 20% of stocks with equal weightings based on earnings surprises.
 
+### Executive Summary
+The strategy centered on earnings surprises, particularly those that are positive, demonstrates a robust capability to secure additional returns following earnings announcements. In the last ten years, strategies employing long positions on positive earnings surprises have not only surpassed negative earnings surprise strategies but also outperformed the broader S&P 500 indices. This approach tends to exhibit increased volatility; however, this is balanced by correspondingly higher returns. Analysis of the Sharpe Ratio reveals that the long positive earnings surprise strategy achieves a 56% rate, outdoing the 48% rate seen with negative earnings surprises. Nonetheless, this strategy also highlights the critical need for precise timing and swift action, as the impact of such surprises tends to fade quickly.
+
+### Results & Insights
+
+Cumulative Returns Chart:
+
+- The Positive Surprise Strategy surpasses both the Negative Surprise Strategy and the S&P 500 index, showing robust growth especially post-2016.
+The Negative Surprise Strategy occasionally underperforms the market, suggesting a riskier proposition.
 
 ![cumulative returns of positive and negative earnings surprise](https://github.com/user-attachments/assets/e2def168-c8dd-4011-b639-0c7ec01e9585)
-**--------------------------------------------------------------------------------------------------------------------------------------------------**
+
+Relative Performance Chart:
+
+- Both strategies have varied in performance relative to the S&P 500, with the Positive Surprise Strategy demonstrating considerable outperformance since 2018, underscoring its effectiveness during varying market conditions. The Long-Short Earnings Surprise Spread shows periods of significant divergence after 2020, indicating potential tactical opportunities within a broader strategic framework.
+
 ![relative performance of negative and positive earnings surprise](https://github.com/user-attachments/assets/741e6665-1d69-4fd3-9f20-71afaab0303a)
-**--------------------------------------------------------------------------------------------------------------------------------------------------**
+
+Risk-Reward Characteristics Chart:
+
+- The Positive Surprise Strategy exhibits higher average returns with a risk profile only marginally higher than the S&P 500, denoting an attractive risk-reward balance. The Negative Surprise Strategy shows higher variability in returns, implying increased risk without commensurate reward.
 ![long positive and negative earnings surprise value risk reward](https://github.com/user-attachments/assets/47c4df31-141b-480e-b6b3-ced473d86ea1)
-**--------------------------------------------------------------------------------------------------------------------------------------------------**
+
+Sharpe Ratio for long positive earnings surprise strategy:  56.00%
+Sharpe Ratio for long negative earnings surprise strategy:  48.10%
+Max Drawdown for long positive earnings surprise strategy: -28.36%
+Max Drawdown for long negative earnings surprise strategy: -30.42%
+skewness for long negative earnings surprise strategy: -0.37
+skewness for long positive earnings surprise strategy: -0.43
+kurtosis for long negative earnings surprise strategy:  4.9
+kurtosis for long positive earnings surprise strategy:  5.5
+historic var for long negative earnings surprise strategy:  6.40%
+historic var for long positive earnings surprise strategy:  6.29%
+CVaR for long negative earnings surprise strategy:  10.85%
+CVaR for long positive earnings surprise strategy:  10.30%
+
+Sector Concentration Chart:
+
+- The sector distribution for investments based on positive earnings surprises has remained diverse, with noticeable shifts in sector weightings over the years, reflecting adaptive strategy allocations.
+
 ![positive earnings surprise factor sector concentration](https://github.com/user-attachments/assets/13f14548-9be4-4614-aaf6-c1e88a56750d)
 
 
-
-# Assumptions and Caveats:
+## Assumptions and Caveats:
 
 Throughout the analysis, multiple assumptions were made to manage challenges with the data. These assumptions and caveats are noted below:
 
-* Assumption 1 (ex: in the value-based factor project, when working with the SEC database, the integrity of the dataset is limited, so the calculation for the company's book value is based on varioius matrics depends on their availability. More details are discussed in P1 and P4)
+* Assumption 1: In the value-based factor project, due to limited dataset integrity from the SEC database, book value calculations are based on available metrics, discussed further in P1 and P4.
+
+* Assumption 2: For the P/B ratio ranking, all negative values were omitted for various justifiable reasons, focusing only on low positive P/B ratios in the lowest 20% of the portfolio.
   
-* Assumption 2 (ex: in the growth-based factor project, factor decay is calcualted as (number of days passed announcement * -1.5%), assuming that normally the impact of surprise would last 60 days according to Bernard, V. L., & Thomas, J. K. (1990). Evidence that stock prices do not fully reflect the implications of current earnings for future earnings. Journal of Accounting and Economics, 13(4), 305-340
+* Assumption 3: In the growth-based factor project, factor decay is calculated by multiplying the number of days post-announcement by -1.5%, based on the hypothesis from Bernard and Thomas (1990), suggesting that the stock price reaction does not completely reflect the impact of current earnings on future earnings.
+
+* Assumption 4: All portfolio constructions are based on an unconstrained approach, excluding real-life implementation costs such as transaction fees.
