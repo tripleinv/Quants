@@ -1,4 +1,4 @@
-# Factor-based Quantitative Strategies Projects
+# Factor-based Quantitative Strategies Projects (P1-P6)
 ## Background
 Factor investing has become increasingly popular among both passive and active investors due to its incorporation of various strategies such as value, growth, size, momentum, quality, and risk. This repository highlights two main projects focusing on factor-based investment strategies that leverage value and growth. The first project is centered on a value-based factor portfolio strategy utilizing the Price-to-Book (P/B) ratio. The second project emphasizes a growth-based factor portfolio strategy that capitalizes on earnings surprises.
 
