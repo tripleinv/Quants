@@ -1,4 +1,4 @@
-# Event Study Project (P7): Trump's Presidency Impact on Stock's Abnormal Returns - "Is there any alpha?"
+# Event Study Project (P7): Impact of Trump's Presidency on Stock Abnormal Returns: "Is There Any Alpha?"
 ## Background
 "What does it mean for the stock market if Donald Trump is re-elected as President of the United States?" This question is stirring much debate as the election approaches, with Vice President Kamala Harris and Donald Trump competing for the presidency. Understanding past events—like the market's reaction in 2016—is crucial to foreseeing the possible impacts of Trump’s potential re-election. Did the market already factor in expected policy changes such as deregulation, tax cuts, and new trade policies affecting sectors like Banking, Energy, and Construction, or is there room to generate alphas based on election results? This project aims to peel back the layers of market reactions to uncover deeper insights. (*Note while this project uses Trump's 2016 election as an event example, the methodology and code provided here is applicable to any event studies)
 
